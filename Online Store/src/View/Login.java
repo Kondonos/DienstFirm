@@ -1,20 +1,9 @@
 package View;
 
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.MessageBox;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.*;
+import org.eclipse.swt.*;
+import org.eclipse.swt.layout.*;
+import org.eclipse.swt.widgets.*;
 
 
 public class Login {
@@ -60,7 +49,7 @@ public class Login {
 	
 	ok.addSelectionListener(new SelectionAdapter() {
 		public void widgetSelected(SelectionEvent e) {
-			//n‰chste klasse / splash screen / datenverarbeitung
+			//n√§chste klasse / splash screen / datenverarbeitung
 			
 		}
 	});
