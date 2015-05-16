@@ -1,9 +1,11 @@
 package View;
 
 import org.eclipse.swt.*;
-import org.eclipse.swt.*;
+import org.eclipse.swt.events.*;
 import org.eclipse.swt.layout.*;
 import org.eclipse.swt.widgets.*;
+
+import Controll.LoginControll;
 
 
 public class Login {
@@ -12,7 +14,9 @@ public class Login {
 	
 	Text textUser;
 	Text textPassword;
-
+	
+	LoginControll controll;			//Controllhandler
+	
 	private void init() {
 		(new Label(shell, SWT.NULL)).setText("User name: ");
 		
@@ -26,22 +30,15 @@ public class Login {
 		textPassword = new Text(shell, SWT.SINGLE | SWT.BORDER);
 		System.out.println(textPassword.getEchoChar());
 		textPassword.setEchoChar('*');
+		controll=new LoginControll();
 		textPassword.addKeyListener(new KeyListener() {
 			public void keyPressed(KeyEvent e) {
-				String string = "";
-				switch (e.character) {
-					case 0: string += " '\\0'"; break;
-					case SWT.BS: string += " '\\b'"; break;
-					case SWT.CR: string += " '\\r'"; break;
-					case SWT.DEL: string += " DEL"; break;
-					case SWT.ESC: string += " ESC"; break;
-					case SWT.LF: string += " '\\n'"; break;
-					default: string += " '" + e.character +"'";
-					break;	}
-				System.out.println ("e.stateMask: " + e.stateMask + string);}
+				controll.KeyPressed(e);
+			}
 			public void keyReleased(KeyEvent e) {
-				if (e.stateMask == SWT.CTRL && e.keyCode != SWT.CTRL)
-					System.out.println("Taste losgelassen");} });
+					controll.KeyReleased(e);
+			}
+		});
 		
 	
 	Button ok = new Button (shell, SWT.PUSH);
@@ -49,7 +46,7 @@ public class Login {
 	
 	ok.addSelectionListener(new SelectionAdapter() {
 		public void widgetSelected(SelectionEvent e) {
-			//nächste klasse / splash screen / datenverarbeitung
+			controll.OKselect(e);
 			
 		}
 	});
@@ -59,7 +56,7 @@ public class Login {
 	
 	cancel.addSelectionListener(new SelectionAdapter() {
 		public void widgetSelected(SelectionEvent e) {
-			shell.close();
+			controll.CANCELSelect(e);
 		}
 	});
 	}
@@ -75,11 +72,7 @@ public class Login {
 		
 		shell.addListener (SWT.Close, new Listener () {
 			public void handleEvent (Event event) {
-				int style = SWT.APPLICATION_MODAL | SWT.YES | SWT.NO;
-				MessageBox messageBox = new MessageBox (shell, style);
-				messageBox.setText ("Information");
-				messageBox.setMessage ("Wollen Sie den Login wikrlich beenden?");
-				event.doit = messageBox.open () == SWT.YES;
+				controll.CLOSEShell(event, shell);
 			}
 		});
 		
@@ -96,11 +89,5 @@ public class Login {
 		}
 
 		display.dispose();
-	}
-
-
-
-	public static void main(String[] args) {
-		new Login();
 	}
 }
