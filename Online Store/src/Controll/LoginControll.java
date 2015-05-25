@@ -8,6 +8,11 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 
 public class LoginControll {
+	Configuration conf;
+	
+	public LoginControll() {
+		conf=new Configuration();
+	}
 	
 	public void KeyPressed(KeyEvent e){
 		String string = "";

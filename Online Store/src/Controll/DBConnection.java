@@ -2,9 +2,10 @@ package Controll;
 
 import java.sql.*;
 import java.util.ArrayList;
+
 import Model.Data;
 
-public class DBConnection<Data>{
+public class DBConnection{
 	Connection con;
 	ResultSet resultset;
 	
@@ -19,19 +20,10 @@ public class DBConnection<Data>{
 		}
 	}
 	
-	public ArrayList<Data> sendquery(String query){
-		ArrayList<Data> daten=new ArrayList<Data>();
-		try {
-			Statement stmt=con.createStatement();
-			ResultSet rs=stmt.executeQuery(query);
-			while(rs.next()){
-				Data tmp.ResultSettoData();		//ist Standdardm‰ﬂig keine Funktion von Object 
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-		return daten;
+	public ResultSet sendquery(String query) throws SQLException{
+		Statement stmt=con.createStatement();
+		ResultSet rs=stmt.executeQuery(query);
+		return rs;
 	}
 	
 }
